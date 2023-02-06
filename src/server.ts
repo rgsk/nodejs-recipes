@@ -1,8 +1,15 @@
 require('dotenv').config();
 import cors from 'cors';
 import express from 'express';
+import { corsCustomOrigin } from 'recipes/cors-origin-validation-using-regexp';
+
 const app = express();
-app.use(cors());
+
+app.use(
+  cors({
+    origin: corsCustomOrigin,
+  })
+);
 app.use(express.json());
 app.get('/', (req, res) => {
   res.json({ message: 'server is working' });
